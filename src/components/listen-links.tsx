@@ -53,7 +53,11 @@ export function ListenLinks() {
                 variant="ghost"
                 className="h-auto w-full justify-center gap-3 px-6 py-5 transition-colors duration-250 hover:bg-white hover:text-[#ff730f]"
               >
-                <Link href={link.href}>
+                <Link
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {link.icon ? (
                     <BrandIcon name={link.icon} className="size-[22px] shrink-0" />
                   ) : (

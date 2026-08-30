@@ -41,7 +41,7 @@ export function Hero() {
     <section className="flex min-h-screen flex-col items-center justify-center px-6 pt-30 pb-[90px] text-center">
       <div
         ref={titleRef}
-        className="relative w-[min(64vw,600px)] [animation:nv-grainy-in_1.7s_cubic-bezier(.16,1,.3,1)_2.75s_both] [will-change:transform,filter,opacity]"
+        className="relative w-[min(64vw,600px)] [animation:nv-grainy-in_1.7s_cubic-bezier(.16,1,.3,1)_.15s_both] [will-change:transform,filter,opacity]"
       >
         <Wordmark priority width={600} />
         <div
@@ -51,7 +51,7 @@ export function Hero() {
         />
       </div>
 
-      <div className="mt-11 [animation:nv-fadeup_1s_cubic-bezier(.16,1,.3,1)_3.15s_both]">
+      <div className="mt-11 [animation:nv-fadeup_1s_cubic-bezier(.16,1,.3,1)_.55s_both]">
         <Button
           asChild
           variant="ghost"
