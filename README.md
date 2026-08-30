@@ -24,6 +24,7 @@ npm run dev
 | Streaming list | `src/components/listen-links.tsx` |
 | Streaming/social URLs, title, tagline | `src/lib/site.ts` |
 | SEO metadata | `src/app/layout.tsx`, `src/app/robots.ts`, `src/app/sitemap.ts` |
+| Link-preview thumbnail | `src/app/opengraph-image.tsx` (generated, 1200×1200) |
 | `/listen` shortlink | `src/app/listen/page.tsx` |
 
 The palette is a single orange theme — shadcn's tokens are remapped onto it in
@@ -43,3 +44,13 @@ derived from it.
   slug. Correct `RELEASE_TITLE` in `src/lib/site.ts` if that's wrong.
 - `SITE_URL` is `https://noveilmusic.com`. Open Graph images, the canonical
   link, `robots.txt`, and `sitemap.xml` all resolve against it.
+
+## Deploy
+
+Vercel, from the GitHub repo, serving `noveilmusic.com`. No environment
+variables and no build configuration are needed — Vercel detects Next.js and
+runs `npm ci && npm run build`.
+
+If the domain ever changes, update `SITE_URL` in `src/lib/site.ts`; the
+canonical link, Open Graph URLs, `robots.txt` and `sitemap.xml` all derive
+from it.

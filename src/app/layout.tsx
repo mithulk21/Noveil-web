@@ -23,13 +23,6 @@ const archivo = Archivo({
 })
 
 const TITLE = `${ARTIST} — ${RELEASE_TITLE}`
-const OG_IMAGE = {
-  url: "/assets/album-art.png",
-  width: 1400,
-  height: 1400,
-  alt: `${RELEASE_TITLE} — ${ARTIST}`,
-}
-
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -57,13 +50,11 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: TITLE,
     description: TAGLINE,
-    images: [OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: TAGLINE,
-    images: [OG_IMAGE],
   },
   robots: {
     index: true,
