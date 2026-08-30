@@ -1,26 +1,227 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "shadcn/tailwind.css";
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-heading: var(--font-archivo), sans-serif;
+  --font-ui: var(--font-inter), sans-serif;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+  Noveil is a single-theme brand surface: orange ground, white ink. The shadcn
+  tokens are remapped onto that palette so its primitives inherit the brand
+  instead of fighting it. There is no dark variant by design.
+*/
+:root {
+  --brand: #ff730f;
+  --brand-glow: #ff930f;
+  --brand-gradient-end: #fc9b25;
+
+  --background: var(--brand);
+  --foreground: #ffffff;
+  --card: transparent;
+  --card-foreground: #ffffff;
+  --popover: #ffffff;
+  --popover-foreground: var(--brand);
+  --primary: #ffffff;
+  --primary-foreground: var(--brand);
+  --secondary: rgb(255 255 255 / 0.12);
+  --secondary-foreground: #ffffff;
+  --muted: rgb(255 255 255 / 0.1);
+  --muted-foreground: rgb(255 255 255 / 0.72);
+  --accent: #ffffff;
+  --accent-foreground: var(--brand);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgb(255 255 255 / 0.8);
+  --input: rgb(255 255 255 / 0.3);
+  --ring: rgb(255 255 255 / 0.7);
+  --radius: 0px;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: #ffffff;
+    color: var(--brand);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility nv-noise {
+  /*
+    Animated film grain, rendered from an inline feTurbulence so it costs no
+    request. The tile is drawn at 1 noise unit per device pixel — never scaled
+    up — so the grain stays a fine dust rather than visible chunks. The 2dppx
+    rule halves the CSS size to keep that 1:1 mapping on retina.
+  */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.85'/></svg>");
+  background-size: 300px 300px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: nv-grain 1.4s steps(1, end) infinite;
+
+  @media (min-resolution: 2dppx) {
+    background-size: 150px 150px;
+  }
+}
+
+@utility nv-noise-fine {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.42' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.85'/></svg>");
+  background-size: 420px 420px;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Clips a grain layer to the silhouette of the wordmark. */
+@utility nv-wordmark-mask {
+  -webkit-mask-image: url(/assets/noveil-wordmark.svg);
+  mask-image: url(/assets/noveil-wordmark.svg);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+@keyframes nv-grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-6%, 4%);
+  }
+  40% {
+    transform: translate(5%, -6%);
+  }
+  60% {
+    transform: translate(-4%, -5%);
+  }
+  80% {
+    transform: translate(6%, 6%);
+  }
+}
+
+@keyframes nv-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes nv-zoomin {
+  0% {
+    opacity: 0;
+    transform: scale(0.62);
+    filter: blur(34px) contrast(2.6);
+  }
+  40% {
+    opacity: 1;
+  }
+  70% {
+    filter: blur(6px) contrast(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0) contrast(1);
+  }
+}
+
+@keyframes nv-noise-out {
+  0% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0.18;
+  }
+}
+
+@keyframes nv-grainy-in {
+  0% {
+    opacity: 0;
+    filter: blur(26px) contrast(2.4);
+    transform: translateY(26px) scale(1.06);
+  }
+  45% {
+    opacity: 1;
+    filter: blur(9px) contrast(1.5);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0) contrast(1);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nv-fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nv-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes nv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
