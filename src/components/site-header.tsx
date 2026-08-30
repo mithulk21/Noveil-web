@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { useRef } from "react"
 
 import { Wordmark } from "@/components/wordmark"
@@ -26,18 +25,18 @@ export function SiteHeader() {
       className="fixed inset-x-0 top-0 z-40 -translate-y-full opacity-0 transition-[opacity,transform] duration-500 ease-[cubic-bezier(.16,1,.3,1)]"
     >
       <div className="mx-auto flex max-w-[1120px] items-center justify-between gap-4 px-[26px] py-[22px]">
-        <Link href="#top" className="relative flex items-center" aria-label="Noveil — back to top">
+        <a href="#top" className="relative flex items-center" aria-label="Noveil — back to top">
           <Wordmark width={120} className="h-[19px] w-auto" />
-        </Link>
+        </a>
         <Button
           asChild
           variant="ghost"
           className="font-ui h-auto gap-2.5 px-0.5 py-2 text-[13px]/none font-medium tracking-[0.06em] uppercase transition-opacity hover:bg-transparent hover:opacity-70"
         >
-          <Link href="#listen">
+          <a href="#listen">
             <PlayGlyph className="size-[13px]" />
             Listen
-          </Link>
+          </a>
         </Button>
       </div>
     </header>

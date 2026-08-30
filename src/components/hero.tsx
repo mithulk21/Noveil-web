@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { useRef } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -57,10 +56,10 @@ export function Hero() {
           variant="ghost"
           className="font-ui h-auto gap-2.5 border border-white/0 px-[30px] py-[17px] text-sm/none font-medium tracking-[0.06em] uppercase transition-[background-color,color,border-color] duration-250 hover:border-white hover:bg-white hover:text-[#ff730f]"
         >
-          <Link href="#listen">
+          <a href="#listen">
             <PlayGlyph className="size-[15px]" />
             Listen now
-          </Link>
+          </a>
         </Button>
       </div>
     </section>
