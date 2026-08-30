@@ -26,7 +26,7 @@ export function ReleaseArtwork() {
           <div
             ref={vinylRef}
             aria-hidden="true"
-            className="absolute top-[9%] -right-[14%] aspect-square w-[76%] rounded-full bg-[repeating-radial-gradient(circle_at_50%_50%,#1b3a8f_0_2px,#16307a_2px_4px)] shadow-[0_30px_60px_-20px_rgba(0,0,0,.65)] [animation:nv-spin_14s_linear_infinite]"
+            className="absolute top-[9%] -right-[14%] aspect-square w-[76%] rounded-full bg-[repeating-radial-gradient(circle_at_50%_50%,#1b3a8f_0_2px,#16307a_2px_4px)] shadow-[0_30px_60px_-20px_rgba(0,0,0,.65)] [animation:nv-spin_32s_linear_infinite]"
           >
             <div className="absolute inset-[38%] rounded-full bg-[#f5f1ec]" />
             <div className="absolute inset-[47.5%] rounded-full bg-[#16307a]" />

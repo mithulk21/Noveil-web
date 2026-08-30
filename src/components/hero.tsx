@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { useRef } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -41,7 +40,7 @@ export function Hero() {
     <section className="flex min-h-screen flex-col items-center justify-center px-6 pt-30 pb-[90px] text-center">
       <div
         ref={titleRef}
-        className="relative w-[min(64vw,600px)] [animation:nv-grainy-in_1.7s_cubic-bezier(.16,1,.3,1)_2.75s_both] [will-change:transform,filter,opacity]"
+        className="relative w-[min(64vw,600px)] [animation:nv-grainy-in_1.7s_cubic-bezier(.16,1,.3,1)_.15s_both] [will-change:transform,filter,opacity]"
       >
         <Wordmark priority width={600} />
         <div
@@ -51,16 +50,16 @@ export function Hero() {
         />
       </div>
 
-      <div className="mt-11 [animation:nv-fadeup_1s_cubic-bezier(.16,1,.3,1)_3.15s_both]">
+      <div className="mt-11 [animation:nv-fadeup_1s_cubic-bezier(.16,1,.3,1)_.55s_both]">
         <Button
           asChild
           variant="ghost"
           className="font-ui h-auto gap-2.5 border border-white/0 px-[30px] py-[17px] text-sm/none font-medium tracking-[0.06em] uppercase transition-[background-color,color,border-color] duration-250 hover:border-white hover:bg-white hover:text-[#ff730f]"
         >
-          <Link href="#listen">
+          <a href="#listen">
             <PlayGlyph className="size-[15px]" />
             Listen now
-          </Link>
+          </a>
         </Button>
       </div>
     </section>
